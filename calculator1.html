@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+  .container{
+    max-width:400px;
+    margin:10vh auto 0 auto;
+    box-shadow:0px 0px 1px 2px rgba(153,153,153,1);
+  }
+  #display{
+   text-align: right; 
+   height: 70px;
+   line-height: 70px;
+   padding: 16px 8px;
+   font-size: 25px;
+    }
+    .buttons{
+      display:grid;
+      border-bottom: 1px solid #999;
+      border-left: #999;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      background-color:white;
+      
+    }
+    .buttons > div {
+      border-top: 1px solid #999;
+      border-right: 1px solid #999;
+    }
+    .button{
+      border: 0.5px solid #999;
+      line-height: 70px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    #equal{
+      background-color: lightblue;
+      color: black;
+    }
+    </style>
+</head>
+<body>
+  <center><h1>Calculator</h1></center>
+    <div class="container">
+      <div id="display"></div>
+      <div class="buttons">
+        <div style="padding-left: 40px;" class="button">C</div>
+        <div style="padding-left: 40px;"class="button">/</div>
+        <div style="padding-left: 40px;"class="button">*</div>
+        <div style="padding-left: 40px;"class="button">&larr;</div>
+        <div style="padding-left: 40px;"class="button">7</div>
+        <div style="padding-left: 40px;"class="button">8</div>
+        <div style="padding-left: 40px;"class="button">9</div>
+        <div style="padding-left: 40px;"class="button">-</div>
+        <div style="padding-left: 40px;"class="button">4</div>
+        <div style="padding-left: 40px;"class="button">5</div>
+        <div style="padding-left: 40px;"class="button">6</div>
+        <div style="padding-left: 40px;"class="button">+</div>
+        <div style="padding-left: 40px;"class="button">1</div>
+        <div style="padding-left: 40px;"class="button">2</div>
+        <div style="padding-left: 40px;"class="button">3</div>
+        <div style="padding-left: 40px;"class="button">.</div>
+        <div style="padding-left: 40px;"class="button">(</div>
+        <div style="padding-left: 40px;"class="button">0</div>
+        <div style="padding-left: 40px;"class="button"class="button">)</div>
+        <div style="padding-left: 40px;"id="equal"class="button">=</div>
+
+      </div>
+    </div>
+    <script>
+      let display = document.getElementById('display');
+      let buttons=Array.from(document.getElementsByClassName('button'));
+      buttons.map(button => {
+        button.addEventListener('click', (e) => {
+          switch(e.target.innerText){
+            case 'C':
+              display.innerText = '';
+              break;
+              case '<-':
+                if(display.innerText){
+                  display.innerText = display.innerText.slice(0,-1);
+                }
+                break;
+                case '=':
+                  try{
+                display.innerText = eval(display.innerText);
+                  }
+                  catch{
+                    display.innerText = 'Error!';
+                  }
+                  break;
+              default:
+                display.innerText += e.target.innerText;
+          }
+
+        });
+      });
+    </script>
+</body>
+</html>
